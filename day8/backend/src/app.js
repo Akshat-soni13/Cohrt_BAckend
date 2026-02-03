@@ -2,8 +2,13 @@
 
 const express = require("express");
 const noteModel = require("./models/note.model");
+const cors = require("cors")
+const path = require("path")
 
 const app = express();
+
+app.use(cors())
+app.use(express.static("./public"))
 
 app.use(express.json())
 
@@ -68,5 +73,19 @@ app.patch("/notes/:id",async (req,res)=>{
     })
 
 })
+
+console.log(__dirname)
+
+
+app.use("*name",(req,res)=>{
+    const path = require("path");
+
+res.sendFile(
+  path.join(__dirname, "..","/public/assets/index.html")
+);
+
+    console.log("This is Wild Card")
+})
+
 
 module.exports= app;
