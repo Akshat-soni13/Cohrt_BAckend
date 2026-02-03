@@ -43,6 +43,22 @@ function App() {
 
   }
 
+  function handleUpdate(noteId)
+  {
+    console.log(noteId)
+    const desc = prompt("Enter Updated Description");
+    console.log(desc)
+
+    axios.patch(`http://localhost:3000/notes/${noteId}`,{
+      description:desc
+    })
+    .then(res=>{
+      console.log(res.data)
+    })
+
+
+  }
+
   return (
     <>
       <div className="Notes_creator" onSubmit={handleSubmit}>
@@ -64,6 +80,11 @@ function App() {
               <button onClick={()=>{
                 handleDeleteNote(note._id)
               }}>Delete Note</button>
+
+              <button  onClick={()=>{
+                handleUpdate(note._id)
+              }}  >Update Description</button>
+
             </div>
           );
         })}
