@@ -4,7 +4,7 @@ function App() {
   const [note, setNote] = useState([]);
 
   function FetchNotes() {
-    axios.get("http://localhost:3000/notes").then((res) => {
+    axios.get("https://cohrt-backend-8.onrender.com/notes").then((res) => {
       setNote(res.data.notes);
     });
   }
@@ -20,7 +20,7 @@ function App() {
     const {title,description} = e.target.elements;
     console.log(title.value,description.value)
 
-    axios.post("http://localhost:3000/notes",{
+    axios.post("https://cohrt-backend-8.onrender.com/notes",{
       title:title.value,
       description:description.value
     })
@@ -36,7 +36,7 @@ function App() {
   function handleDeleteNote(noteid)
   {
     console.log(noteid)
-    axios.delete("http://localhost:3000/notes/"+noteid)
+    axios.delete("https://cohrt-backend-8.onrender.com/notes"+noteid)
     .then(res=>{
       console.log(res.data)
     })
@@ -49,7 +49,7 @@ function App() {
     const desc = prompt("Enter Updated Description");
     console.log(desc)
 
-    axios.patch(`http://localhost:3000/notes/${noteId}`,{
+    axios.patch(`https://cohrt-backend-8.onrender.com/notes/${noteId}`,{
       description:desc
     })
     .then(res=>{
@@ -61,8 +61,8 @@ function App() {
 
   return (
     <>
-      <div className="Notes_creator" onSubmit={handleSubmit}>
-        <form className="former">
+      <div className="Notes_creator" >
+        <form className="former" onSubmit={handleSubmit}>
           <input type="text" placeholder="Enter the Titlte " name="title" />
           <input type="text" placeholder="Enter the Description" name="description"  />
           <button >Create Note</button>
